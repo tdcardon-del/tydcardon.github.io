@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Game App</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<div class="navbar">
+    <a href="index.html">Home</a>
+    <a href="scratch.html">Scratch</a>
+</div>
+
+<div class="container">
+
+    <h1>Guess the Number Game</h1>
+
+    <p>Pick a number between 1 and 10</p>
+
+    <input type="number" id="guess">
+    <button onclick="checkGuess()" class="btn">Submit</button>
+
+    <p id="result"></p>
+
+    <h3>Score: <span id="score">0</span></h3>
+    <h3>Attempts: <span id="attempts">0</span></h3>
+
+</div>
+
+<script>
+let answer = Math.floor(Math.random() * 10) + 1;
+
+let score = 0;
+let attempts = 0;
+
+function newGame() {
+    answer = Math.floor(Math.random() * 10) + 1;
+    document.getElementById("guess").value = "";
+    document.getElementById("result").innerHTML = "";
+}
+
+function checkGuess() {
+    let guess = Number(document.getElementById("guess").value);
+
+    // count every attempt
+    attempts++;
+    document.getElementById("attempts").innerHTML = attempts;
+
+    if (guess === answer) {
+        score++;
+        document.getElementById("score").innerHTML = score;
+
+        document.getElementById("result").innerHTML = "Correct! 🎉 New number generated!";
+
+        setTimeout(newGame, 1200);
+    } 
+    else {
+        document.getElementById("result").innerHTML = "Try again!";
+    }
+}
+</script>
+
+</body>
+</html>
